@@ -13,6 +13,12 @@
 - **网页面板** — 在应用内打开宝塔、1Panel 等后台页面，自动填写登录表单，多标签切换。
 - **凭据管理** — SSH、数据库和面板密码存储在 macOS Keychain。
 
+## 下载安装
+
+前往 [GitHub Releases](https://github.com/glassBoul/SSHKeeper/releases/latest)，下载 `SSHKeeper-1.0.0-universal.dmg`，打开后将 `SSHKeeper.app` 拖入「应用程序」。
+
+安装包支持 macOS 14 及以上，包含 Apple Silicon 和 Intel 架构，已通过 Developer ID 签名和 Apple 公证。发布页同时提供 `SHA256SUMS` 校验文件。
+
 ## 环境要求
 
 - macOS 14 Sonoma 或更高版本。
