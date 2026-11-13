@@ -1,0 +1,22 @@
+# sample SSH config
+Host bastion
+    HostName bastion.example.com
+    User ops
+    Port 2222
+    IdentityFile ~/.ssh/bastion_ed25519
+
+Host web1 web2
+    HostName 10.0.0.1
+    User deploy
+    ProxyJump bastion
+
+Host *
+    ServerAliveInterval 60
+
+Match host db.*
+    User dba
+
+Host single-with-extras
+    HostName s.example.com
+    ForwardAgent yes
+    StrictHostKeyChecking no

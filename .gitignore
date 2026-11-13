@@ -1,0 +1,35 @@
+.DS_Store
+*.xcodeproj/*
+!SSHKeeper.xcodeproj/project.xcworkspace/
+SSHKeeper.xcodeproj/project.xcworkspace/*
+!SSHKeeper.xcodeproj/project.xcworkspace/xcshareddata/
+SSHKeeper.xcodeproj/project.xcworkspace/xcshareddata/*
+!SSHKeeper.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/
+SSHKeeper.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/*
+xcuserdata/
+*.xcworkspace/xcuserdata/
+DerivedData/
+build/
+.build/
+.swiftpm/
+Package.resolved
+!SSHKeeper.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+*.dmg
+
+# Local credentials and signing files
+.env
+.env.*
+!.env.example
+*.p12
+*.p8
+*.key
+*.pem
+*.mobileprovision
+*.provisionprofile
+
+# Local editor and agent settings
+.claude/
+.codex/
+.idea/
+.vscode/
+*.xcresult/

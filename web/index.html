@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SSHKeeper — macOS 连接 / 数据 / 面板工作台</title>
+    <meta name="description" content="SSHKeeper：写给 macOS 的 SSH 主机管理、MySQL/PostgreSQL 数据库工作台、网页面板自动登录三合一工具。Universal binary 同时支持 Apple Silicon 与 Intel Mac，Apple Developer ID 签名公证。" data-lang="zh">
+    <meta name="description" content="SSHKeeper: a macOS workbench combining SSH hosts, MySQL/PostgreSQL database tools, and web panel auto-login. Universal binary for both Apple Silicon and Intel Mac, Apple Developer ID signed and notarized." data-lang="en">
+    <meta name="theme-color" content="#fbfbfd" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0a0a0c" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+</head>
+<body>
+
+<nav id="nav" aria-label="Primary">
+    <div class="nav-inner container">
+        <a href="#" class="nav-logo" aria-label="SSHKeeper home">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="4.5" width="18" height="15" rx="3.5"/>
+                <path d="M8 10.5l3 3-3 3"/>
+                <path d="M13.5 16.5h4"/>
+            </svg>
+            <span>SSHKeeper</span>
+        </a>
+        <div class="nav-actions">
+            <div class="lang-switch" role="group" aria-label="Language">
+                <button type="button" data-toggle-lang="zh" aria-current="true">中</button>
+                <button type="button" data-toggle-lang="en" aria-current="false">EN</button>
+            </div>
+            <a class="btn btn-primary btn-sm" href="#download">
+                <span data-lang="zh">下载</span>
+                <span data-lang="en">Download</span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<header id="hero">
+    <div class="hero-inner container">
+        <span class="hero-eyebrow">
+            <span class="dot" aria-hidden="true"></span>
+            <span data-lang="zh">macOS · Universal · 已公证</span>
+            <span data-lang="en">macOS · Universal · Notarized</span>
+        </span>
+        <h1>
+            <span data-lang="zh">连接 · 数据 · 面板，<br><span class="accent-grad">一个工作台搞定</span></span>
+            <span data-lang="en">Connections, data, panels —<br><span class="accent-grad">one native workbench</span></span>
+        </h1>
+        <p class="hero-sub">
+            <span data-lang="zh">SSH 主机管理、MySQL &amp; PostgreSQL 工作台、网页面板自动登录三合一。Universal binary 兼容 Apple Silicon 与 Intel Mac，密码全部由 macOS Keychain 看管。</span>
+            <span data-lang="en">SSH hosts, MySQL &amp; PostgreSQL workbench, and web panel auto-login — all in one. Universal binary for Apple Silicon and Intel Mac, every credential guarded by macOS Keychain.</span>
+        </p>
+        <div class="hero-cta">
+            <a class="btn btn-primary btn-lg" href="#download">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 4v12m0 0l-5-5m5 5l5-5"/>
+                    <path d="M5 20h14"/>
+                </svg>
+                <span data-lang="zh">下载 macOS 版</span>
+                <span data-lang="en">Download for macOS</span>
+            </a>
+            <a class="btn btn-ghost btn-lg" href="#features">
+                <span data-lang="zh">了解更多</span>
+                <span data-lang="en">Learn more</span>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M9 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+        <p class="hero-meta">
+            <span data-lang="zh">免费 · 支持 macOS 14 Sonoma 及以上 · 约 12 MB</span>
+            <span data-lang="en">Free · macOS 14 Sonoma or later · ~12 MB</span>
+        </p>
+
+        <div class="hero-mockup-wrap">
+            <figure class="mockup" aria-hidden="true">
+                <div class="mockup-chrome">
+                    <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+                    <span class="mockup-title">SSHKeeper — long@prod-db</span>
+                </div>
+                <div class="mockup-body">
+<pre class="mock-term"><span class="mt-prompt">long@mac ~</span> <span class="mt-cmd">$ ssh prod-db</span>
+<span class="mt-muted">Last login: Tue 11:42 from 10.0.0.4</span>
+<span class="mt-prompt">long@prod-db ~</span> <span class="mt-cmd">$ mysql -u root -p</span>
+<span class="mt-muted">mysql&gt;</span> <span class="mt-kw">SELECT</span> id, email, status <span class="mt-kw">FROM</span> users <span class="mt-kw">WHERE</span> created_at &gt; <span class="mt-str">'2026-01-01'</span> <span class="mt-kw">LIMIT</span> <span class="mt-num">3</span>;
+<span class="mt-out">+----+-------------------+--------+</span>
+<span class="mt-out">| id | email             | status |</span>
+<span class="mt-out">+----+-------------------+--------+</span>
+<span class="mt-out">|  1 | alice@example.com | active |</span>
+<span class="mt-out">|  2 | bob@example.com   | active |</span>
+<span class="mt-out">|  3 | carol@example.com | paused |</span>
+<span class="mt-out">+----+-------------------+--------+</span>
+<span class="mt-muted">3 rows in set (0.00 sec)</span>
+<span class="mt-prompt">long@prod-db ~</span> <span class="mt-cmd">$ </span><span class="mt-caret"></span></pre>
+                </div>
+            </figure>
+        </div>
+    </div>
+</header>
+
+<section id="trust" aria-label="Trust signals">
+    <div class="container">
+        <div class="trust-row">
+            <div class="trust-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 2L4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4z"/>
+                    <path d="M9 12l2 2 4-4"/>
+                </svg>
+                <span data-lang="zh">Apple Developer ID 签名</span>
+                <span data-lang="en">Apple Developer ID signed</span>
+            </div>
+            <div class="trust-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path d="M8 12l3 3 5-6"/>
+                </svg>
+                <span data-lang="zh">Apple Notary 公证</span>
+                <span data-lang="en">Apple notarized</span>
+            </div>
+            <div class="trust-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="4" y="8" width="16" height="12" rx="2"/>
+                    <path d="M8 8V6a4 4 0 018 0v2"/>
+                    <circle cx="12" cy="14" r="1.4" fill="currentColor"/>
+                </svg>
+                <span data-lang="zh">密码托管在 Keychain</span>
+                <span data-lang="en">Credentials in Keychain</span>
+            </div>
+            <div class="trust-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 4h14v16H5z"/>
+                    <path d="M9 4v16M15 4v16M5 9h14M5 15h14"/>
+                </svg>
+                <span data-lang="zh">Universal · arm64 + x86_64</span>
+                <span data-lang="en">Universal · arm64 + x86_64</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="features">
+    <div class="container">
+        <div class="section-head">
+            <span class="section-eyebrow">
+                <span data-lang="zh">能做什么</span>
+                <span data-lang="en">Capabilities</span>
+            </span>
+            <h2>
+                <span data-lang="zh">把一天里要切换的工具，合成一个</span>
+                <span data-lang="en">Tools you keep switching between, in one window</span>
+            </h2>
+            <p class="section-sub">
+                <span data-lang="zh">三大模块共享同一个窗口与 tab 切换，少开一堆 App，少绕一圈密码。</span>
+                <span data-lang="en">Three modules sharing one window and tab strip — fewer apps to juggle, fewer passwords to retype.</span>
+            </p>
+        </div>
+        <div class="bento">
+            <article class="bento-card wide">
+                <div class="bento-icon">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="3" y="4.5" width="18" height="13" rx="2"/>
+                        <path d="M8 21h8M12 17v4"/>
+                        <path d="M7 9l3 3-3 3M12 12h4"/>
+                    </svg>
+                </div>
+                <h3>
+                    <span data-lang="zh">SSH 主机管理</span>
+                    <span data-lang="en">SSH Hosts</span>
+                </h3>
+                <p>
+                    <span data-lang="zh">统一管理 ssh config + Keychain 密码 + 私钥；多主机多标签、跨分组浏览，右键即开会话。配置改动实时同步，不需要重启。</span>
+                    <span data-lang="en">Manage ssh config, Keychain passwords, and keys in one place. Multi-host tabs, grouped browsing, one right-click to connect. Config edits sync live — no restart.</span>
+                </p>
+            </article>
+
+            <article class="bento-card">
+                <div class="bento-icon">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <ellipse cx="12" cy="5" rx="8" ry="3"/>
+                        <path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/>
+                        <path d="M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/>
+                    </svg>
+                </div>
+                <h3>
+                    <span data-lang="zh">数据库工作台</span>
+                    <span data-lang="en">Database Workbench</span>
+                </h3>
+                <p>
+                    <span data-lang="zh">MySQL &amp; PostgreSQL；可视化改表、改字段、改索引；行级 CRUD；SQL 编辑器自动补全 + EXPLAIN；可走 SSH 隧道。</span>
+                    <span data-lang="en">MySQL &amp; PostgreSQL. Visual table / column / index editing. Row-level CRUD. SQL editor with autocomplete + EXPLAIN. SSH tunnel supported.</span>
+                </p>
+            </article>
+
+            <article class="bento-card">
+                <div class="bento-icon">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9"/>
+                        <path d="M3 12h18"/>
+                        <path d="M12 3a13 13 0 010 18M12 3a13 13 0 000 18"/>
+                    </svg>
+                </div>
+                <h3>
+                    <span data-lang="zh">面板自动登录</span>
+                    <span data-lang="en">Panel Auto-Login</span>
+                </h3>
+                <p>
+                    <span data-lang="zh">后台 / 路由器 / NAS 的网页登录页一次添加，再访问一键登录。多面板单窗口 tab，切换不丢登录态。</span>
+                    <span data-lang="en">Add admin / router / NAS login pages once, then sign in with a single click. Multi-panel tabs in one window; sessions survive tab switches.</span>
+                </p>
+            </article>
+
+            <article class="bento-card wide">
+                <div class="bento-icon">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/>
+                        <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                </div>
+                <h3>
+                    <span data-lang="zh">安全与性能</span>
+                    <span data-lang="en">Security &amp; Performance</span>
+                </h3>
+                <p>
+                    <span data-lang="zh">Apple Developer ID 签名 + 公证；所有密码托管 macOS Keychain，二进制签名校验，换签名密钥也读不到。Universal binary 同时跑 arm64 与 x86_64，SwiftNIO 异步 DB 连接。SQL 全参数化，注入面消除。</span>
+                    <span data-lang="en">Apple Developer ID signed and notarized. Every password lives in macOS Keychain, locked to the signed binary — even a re-signed copy can't read them. Universal binary on arm64 and x86_64 with SwiftNIO async DB. All SQL is parameterized.</span>
+                </p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section id="screenshots">
+    <div class="container">
+        <div class="shot-row">
+            <div class="shot-copy">
+                <h2>
+                    <span data-lang="zh">内置终端<br>多标签会话</span>
+                    <span data-lang="en">Built-in terminal<br>Tabbed sessions</span>
+                </h2>
+                <p>
+                    <span data-lang="zh">基于 SwiftTerm 的真终端：同一窗口开多个主机、tab 间切换不掉线；ssh config 改动实时同步到主机列表。</span>
+                    <span data-lang="en">A real terminal built on SwiftTerm. Open multiple hosts in one window; tabs persist across switches; ssh config edits sync live to the host list.</span>
+                </p>
+                <ul>
+                    <li><span data-lang="zh">⌘T 新建标签 / ⌘1-9 直达</span><span data-lang="en">⌘T new tab · ⌘1-9 jump</span></li>
+                    <li><span data-lang="zh">右键复制 / 粘贴 / 搜索历史</span><span data-lang="en">Right-click copy · paste · search history</span></li>
+                    <li><span data-lang="zh">连接复用：SSH ControlMaster</span><span data-lang="en">Connection reuse via SSH ControlMaster</span></li>
+                </ul>
+            </div>
+            <figure class="mockup" aria-hidden="true">
+                <!-- TODO: 替换为真实截图 -->
+                <div class="mockup-chrome">
+                    <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+                    <span class="mockup-title">Terminal · 3 sessions</span>
+                </div>
+                <div class="mockup-tabs">
+                    <span class="mock-tab active">● prod-db</span>
+                    <span class="mock-tab">● bastion</span>
+                    <span class="mock-tab">● cache-01</span>
+                    <span class="mock-tab add">+ </span>
+                </div>
+                <div class="mockup-body">
+<pre class="mock-term"><span class="mt-prompt">long@prod-db ~</span> <span class="mt-cmd">$ uptime</span>
+ <span class="mt-num">11:42</span>  up <span class="mt-num">47</span> days,  load avg: <span class="mt-num">0.32</span> <span class="mt-num">0.28</span> <span class="mt-num">0.30</span>
+<span class="mt-prompt">long@prod-db ~</span> <span class="mt-cmd">$ docker ps</span>
+<span class="mt-muted">CONTAINER     IMAGE       STATUS</span>
+ab12cd34ef56  postgres    Up 12 days
+9876543210ab  redis       Up 12 days
+2f1a4b9c8d7e  nginx       Up 12 days
+<span class="mt-prompt">long@prod-db ~</span> <span class="mt-cmd">$ </span><span class="mt-caret"></span></pre>
+                </div>
+            </figure>
+        </div>
+
+        <div class="shot-row reverse">
+            <div class="shot-copy">
+                <h2>
+                    <span data-lang="zh">数据库工作台<br>所见即所改</span>
+                    <span data-lang="en">Database workbench<br>Edit what you see</span>
+                </h2>
+                <p>
+                    <span data-lang="zh">侧栏跳表，主区切「结构 / 内容 / 关系 / 触发器 / 表信息」五个 tab；行级增删改右键即走，无需手写 SQL。</span>
+                    <span data-lang="en">Sidebar to jump tables; main pane tabs across Structure / Content / Relations / Triggers / Info. Right-click any row to insert, edit, or delete — no SQL by hand.</span>
+                </p>
+                <ul>
+                    <li><span data-lang="zh">行 / 字段 / 索引可视化编辑</span><span data-lang="en">Visual row / column / index editing</span></li>
+                    <li><span data-lang="zh">SQL 全参数化，注入安全</span><span data-lang="en">All SQL parameterized, injection-safe</span></li>
+                    <li><span data-lang="zh">SSH 隧道 + TLS 任意组合</span><span data-lang="en">SSH tunnel + TLS, any combination</span></li>
+                </ul>
+            </div>
+            <figure class="mockup" aria-hidden="true">
+                <!-- TODO: 替换为真实截图 -->
+                <div class="mockup-chrome">
+                    <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+                    <span class="mockup-title">prod-db · orders</span>
+                </div>
+                <div class="mockup-body mockup-body-db">
+                    <aside class="mock-sidebar">
+                        <div class="mock-search">⌕ Filter tables</div>
+                        <ul>
+                            <li>users <small>1,724</small></li>
+                            <li class="active">orders <small>9,310</small></li>
+                            <li>products <small>412</small></li>
+                            <li>shipments <small>2,205</small></li>
+                            <li>payments <small>11,883</small></li>
+                            <li>audit_log <small>—</small></li>
+                        </ul>
+                    </aside>
+                    <main class="mock-pane">
+                        <div class="mock-tabbar">
+                            <span class="mock-tab">Structure</span>
+                            <span class="mock-tab active">Content</span>
+                            <span class="mock-tab">Relations</span>
+                            <span class="mock-tab">Info</span>
+                        </div>
+                        <table class="mock-table">
+                            <thead><tr><th>id</th><th>user_id</th><th>total</th><th>status</th></tr></thead>
+                            <tbody>
+                                <tr><td class="num">4123</td><td class="num">17</td><td class="num">$128.40</td><td><span class="mock-status-paid">paid</span></td></tr>
+                                <tr><td class="num">4124</td><td class="num">92</td><td class="num">$ 12.00</td><td><span class="mock-status-pend">pending</span></td></tr>
+                                <tr class="hl"><td class="num">4125</td><td class="num">17</td><td class="num">$ 88.99</td><td><span class="mock-status-paid">paid</span></td></tr>
+                                <tr><td class="num">4126</td><td class="num">31</td><td class="num">$254.00</td><td><span class="mock-status-paid">paid</span></td></tr>
+                            </tbody>
+                        </table>
+                    </main>
+                </div>
+            </figure>
+        </div>
+    </div>
+</section>
+
+<section id="download">
+    <div class="container">
+        <div class="section-head">
+            <span class="section-eyebrow">
+                <span data-lang="zh">立即开始</span>
+                <span data-lang="en">Get started</span>
+            </span>
+            <h2>
+                <span data-lang="zh">免费下载，几秒上手</span>
+                <span data-lang="en">Free download, seconds to set up</span>
+            </h2>
+        </div>
+        <div class="dl-card">
+            <div class="dl-title">SSHKeeper for macOS</div>
+            <div class="dl-meta">
+                <span class="dlm-ver"><!-- TODO: 发布时填实际版本号 -->1.0.0</span>
+                <span class="dot-sep">·</span>
+                <span class="dlm-size"><!-- TODO: 发布时填实际包大小 -->约 16 MB</span>
+                <span class="dot-sep">·</span>
+                Universal (arm64 + x86_64)
+            </div>
+            <a class="btn btn-primary btn-lg" download href="./SSHKeeper-1.0.0.dmg">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14"/>
+                </svg>
+                <span data-lang="zh">下载 .dmg</span>
+                <span data-lang="en">Download .dmg</span>
+            </a>
+            <ul class="dl-reqs">
+                <li>
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg>
+                    <span data-lang="zh">macOS 14.0 Sonoma 或更高</span>
+                    <span data-lang="en">macOS 14.0 Sonoma or later</span>
+                </li>
+                <li>
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg>
+                    <span data-lang="zh">Apple Silicon（M 系列）或 Intel Mac</span>
+                    <span data-lang="en">Apple Silicon (M-series) or Intel Mac</span>
+                </li>
+                <li>
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg>
+                    <span data-lang="zh">Apple Developer ID · 已公证</span>
+                    <span data-lang="en">Apple Developer ID · Notarized</span>
+                </li>
+            </ul>
+            <div class="dl-sha">
+                <span class="sha-label">SHA256</span>
+                <code id="sha-value"><!-- TODO: 发布时填实际 SHA256 -->a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2</code>
+                <button class="btn-copy" id="sha-copy" type="button">
+                    <span data-lang="zh">复制</span>
+                    <span data-lang="en">Copy</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="faq">
+    <div class="container-narrow">
+        <div class="section-head">
+            <span class="section-eyebrow">FAQ</span>
+            <h2>
+                <span data-lang="zh">常见问题</span>
+                <span data-lang="en">Frequently asked</span>
+            </h2>
+        </div>
+        <div class="faq-list">
+            <details>
+                <summary>
+                    <span data-lang="zh">Intel Mac 还能用吗？</span>
+                    <span data-lang="en">Does it run on Intel Mac?</span>
+                </summary>
+                <div class="faq-body">
+                    <p>
+                        <span data-lang="zh">现在可以了。DMG 是 Universal binary（arm64 + x86_64），Apple Silicon 和 Intel Mac 都能跑同一份安装包，下载即装。</span>
+                        <span data-lang="en">Yes. The DMG is a Universal binary (arm64 + x86_64) — the same installer runs on Apple Silicon and Intel Macs.</span>
+                    </p>
+                </div>
+            </details>
+
+            <details>
+                <summary>
+                    <span data-lang="zh">我的密码存在哪？</span>
+                    <span data-lang="en">Where are my passwords stored?</span>
+                </summary>
+                <div class="faq-body">
+                    <p>
+                        <span data-lang="zh">全部存 macOS Keychain；SSHKeeper 从不把明文密码写到磁盘。Keychain 的 ACL 限定只有 SSHKeeper 签名二进制能读，换签名密钥也读不到 — 这是项目选择 Manual Developer ID 签名的原因。</span>
+                        <span data-lang="en">All credentials live in macOS Keychain. Nothing is written to disk in plaintext. Keychain ACLs allow only the signed SSHKeeper binary to read — even a re-signed copy cannot. That's why we use Manual Developer ID signing.</span>
+                    </p>
+                </div>
+            </details>
+
+            <details>
+                <summary>
+                    <span data-lang="zh">第一次打开报「无法验证开发者」？</span>
+                    <span data-lang="en">"Cannot verify developer" on first open?</span>
+                </summary>
+                <div class="faq-body">
+                    <p>
+                        <span data-lang="zh">Gatekeeper 公证缓存还没刷出来。右键 App → 打开 → 弹窗确认即可。或者命令行：</span>
+                        <span data-lang="en">Gatekeeper notarization cache miss. Right-click the App → Open → confirm in the dialog. Or, from Terminal:</span>
+                    </p>
+                    <pre class="faq-code">xattr -dr com.apple.quarantine /Applications/SSHKeeper.app</pre>
+                </div>
+            </details>
+
+            <details>
+                <summary>
+                    <span data-lang="zh">支持 SSH 隧道连数据库吗？</span>
+                    <span data-lang="en">Database over SSH tunnel?</span>
+                </summary>
+                <div class="faq-body">
+                    <p>
+                        <span data-lang="zh">支持。编辑数据库时勾「通过 SSH 隧道」并选 ssh config 中的跳板机；连接时会自动 <code>ssh -N -L lport:host:port alias</code>。</span>
+                        <span data-lang="en">Yes. In the Database editor, enable "Via SSH tunnel" and pick a host from ssh config. The app runs <code>ssh -N -L lport:host:port alias</code> for you.</span>
+                    </p>
+                </div>
+            </details>
+
+            <details>
+                <summary>
+                    <span data-lang="zh">数据库密码安全吗？</span>
+                    <span data-lang="en">Database password safety?</span>
+                </summary>
+                <div class="faq-body">
+                    <p>
+                        <span data-lang="zh">与 SSH 密码同策略：Keychain + 二进制签名校验。SQL 全部走参数化 <code>?</code> 占位 + bindings，无字符串拼接；TLS 可强制。</span>
+                        <span data-lang="en">Same policy as SSH: Keychain + signed binary check. All SQL is parameterized (<code>?</code> placeholders + bindings) — no string concat. TLS can be enforced.</span>
+                    </p>
+                </div>
+            </details>
+
+            <details>
+                <summary>
+                    <span data-lang="zh">商业支持 / 反馈邮箱</span>
+                    <span data-lang="en">Support &amp; feedback</span>
+                </summary>
+                <div class="faq-body">
+                    <p>
+                        <span data-lang="zh">邮件 <a href="mailto:sshkeeper@feilian.cc">sshkeeper@feilian.cc</a>。Bug、商业授权、定制开发都走这里；通常 1-2 个工作日回复。</span>
+                        <span data-lang="en">Email <a href="mailto:sshkeeper@feilian.cc">sshkeeper@feilian.cc</a>. Bugs, commercial licensing, custom development — typical reply within 1-2 business days.</span>
+                    </p>
+                </div>
+            </details>
+        </div>
+    </div>
+</section>
+
+<footer id="footer">
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <strong>
+                <span data-lang="zh">飞链数字科技南通有限公司</span>
+                <span data-lang="en">Feilian Digital Technology (Nantong) Co., Ltd.</span>
+            </strong>
+            <p>
+                <span data-lang="zh">SSHKeeper 是面向 macOS 的连接 / 数据 / 面板工作台。Universal binary 兼容 Apple Silicon 与 Intel，密码托管 Keychain。</span>
+                <span data-lang="en">SSHKeeper is a macOS workbench for connections, data, and panels. Universal binary for Apple Silicon and Intel, passwords in Keychain.</span>
+            </p>
+        </div>
+        <div class="footer-col">
+            <h4>
+                <span data-lang="zh">联系</span>
+                <span data-lang="en">Contact</span>
+            </h4>
+            <ul>
+                <li><a href="mailto:sshkeeper@feilian.cc">sshkeeper@feilian.cc</a></li>
+                <li>
+                    <span data-lang="zh">商业授权 / 定制开发</span>
+                    <span data-lang="en">Licensing / custom dev</span>
+                </li>
+                <li>
+                    <span data-lang="zh">1-2 工作日回复</span>
+                    <span data-lang="en">1-2 business days reply</span>
+                </li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>
+                <span data-lang="zh">系统要求</span>
+                <span data-lang="en">Requirements</span>
+            </h4>
+            <ul>
+                <li>macOS 14.0+</li>
+                <li>Apple Silicon / Intel</li>
+                <li>
+                    <span data-lang="zh">约 16 MB · Universal · 已签名 · 已公证</span>
+                    <span data-lang="en">~16 MB · Universal · Signed · Notarized</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>
+            <span data-lang="zh">© 2026 飞链数字科技南通有限公司. 保留所有权利。</span>
+            <span data-lang="en">© 2026 Feilian Digital Technology (Nantong) Co., Ltd. All rights reserved.</span>
+        </span>
+        <!-- TODO: 国内主机部署前补 ICP 备案号；海外主机删此行 -->
+    </div>
+</footer>
+
+</body>
+</html>
