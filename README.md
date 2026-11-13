@@ -4,6 +4,8 @@
 
 面向 macOS 的 SSH 主机管理、数据库和网页面板工作台，使用 Swift、SwiftUI 和 AppKit 开发。
 
+官网：[ssh-keeper.com](https://ssh-keeper.com/)
+
 ## 功能
 
 - **SSH 主机管理** — 导入 `~/.ssh/config`，管理分组、标签、私钥和多标签终端会话。
